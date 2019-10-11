@@ -88,13 +88,13 @@ if ($data2 != "") { ?>
                             <label class='col-md-3'>Tanggal Lahir</label>
                             <div class='col-md-9'>
                                 <div class="input-group">
-                                    <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control datepicker" data-date-format="dd-mm-yyyy">
+                                    <input type="date" name="tgl_lahir" class="form-control datepicker">
                                     <span class="input-group-addon"><i class="icon-calendar"></i></span>
                                 </div>
                             </div>
                         </div>
                         <br>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class='col-md-3'>Jenis Kelamin</label>
                             <div class='col-md-9'>
                                 <label class="radio-inline">
@@ -140,7 +140,7 @@ if ($data2 != "") { ?>
                                 </div>
                             </div>
                         </div>
-                        <br>
+                        <br> -->
                         <!-- <div class="form-group">
                             <label class='col-md-3'>Foto</label>
                             <div class='col-md-9'>

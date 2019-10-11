@@ -24,7 +24,7 @@ class Nasabah extends CI_Controller
 			"title" => 'Nasabah',
 			"menu" => getmenu(),
 			"all" => $this->db->get('nasabah')->result(),
-			"aktif" => "nasabah",
+			"aktif" => "Nasabah",
 			"content" => "nasabah/index.php",
 		);
 		$this->breadcrumb->append_crumb('Nasabah', site_url('nasabah'));
@@ -46,9 +46,9 @@ class Nasabah extends CI_Controller
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
 		$this->form_validation->set_rules('tmpt_lahir', 'Tempat Lahir', 'required');
 		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
-		$this->form_validation->set_rules('j_kelamin', 'j_kelamin', 'required');
-		$this->form_validation->set_rules('status', 'status', 'required');
-		$this->form_validation->set_rules('info', 'info', 'required');
+		//$this->form_validation->set_rules('j_kelamin', 'j_kelamin', 'required');
+		//$this->form_validation->set_rules('status', 'status', 'required');
+		//$this->form_validation->set_rules('info', 'info', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('error', "Data Gagal Diinput");
 			redirect('Nasabah');
@@ -61,9 +61,9 @@ class Nasabah extends CI_Controller
 				// "tgl_lahir" => $tanggal1,
 				// "tgl_lahir" => date('Y-m-d'),
 				//"tgl_lahir" => date_format(date_create($this->input->post('tanggal_mulai')), 'Y-m-d'),
-				"j_kelamin" => $_POST['j_kelamin'],
-				"status" => $_POST['status'],
-				"info" => $_POST['info'],
+				//"j_kelamin" => $_POST['j_kelamin'],
+				//"status" => $_POST['status'],
+				//"info" => $_POST['info'],
 				// "foto" => $_POST['foto']
 				// "foto" => 'default.jpg'
 			);
@@ -71,7 +71,7 @@ class Nasabah extends CI_Controller
 			// $tgl = substr($tgl_lahir, 3, 2);
 			// $thn = substr($tgl_lahir, 6, 4);
 			// $tanggall = $thn . '-' . $bln . '-' . $tgl;
-			return var_dump($data);
+			//return var_dump($data);
 			$this->db->insert('nasabah', $data);
 			$this->session->set_flashdata('sukses', "Data Berhasil Disimpan");
 			redirect('Nasabah');

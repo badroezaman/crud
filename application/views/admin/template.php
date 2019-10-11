@@ -43,11 +43,6 @@
   <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/picker.date.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/js/pages/components_popups.js'); ?>"></script>
 
-  <!-- <script type="text/javascript">
-    $('#tgl_lahir .input-group.date').datepicker({
-      todayHighlight: true
-    });
-  </script> -->
 
   <style>
     .img4 {
@@ -136,22 +131,6 @@
     </div>
   </div>
 
-  <script type="text/javascript">
-    $(function() {
-      $('#tgl_lahir').datepicker({
-        language: "id",
-        autoclose: true,
-        format: 'dd/mm/yyyy'
-        // todayHighlight: true
-      });
-    });
-
-    // $('#tgl_lahir .input-group.date').datepicker({
-    //   language: "id",
-    //   autoclose: true,
-    //   todayHighlight: true
-    // });
-  </script>
 </body>
 
 </html>
