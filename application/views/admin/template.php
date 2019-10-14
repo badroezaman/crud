@@ -31,12 +31,12 @@
   <script type="text/javascript" src="<?php echo base_url('assets/js/pages/form_select2.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/js/pages/components_modals.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/js/pages/picker_date.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/js/core/libraries/jquery_ui/datepicker.min.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/js/core/libraries/jquery_ui/effects.min.js'); ?>"></script>
+  <!-- <script type="text/javascript" src="<?php echo base_url('assets/js/core/libraries/jquery_ui/datepicker.min.js'); ?>"></script> -->
+  <!-- <script type="text/javascript" src="<?php echo base_url('assets/js/core/libraries/jquery_ui/effects.min.js'); ?>"></script> -->
   <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/ui/moment/moment.min.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/daterangepicker.js'); ?>"></script>
+  <!-- <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/daterangepicker.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/picker.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/picker.date.js'); ?>"></script>
+  <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/pickers/pickadate/picker.date.js'); ?>"></script> -->
   <script type="text/javascript" src="<?php echo base_url('assets/js/pages/components_popups.js'); ?>"></script>
 
 
