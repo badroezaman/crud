@@ -12,8 +12,6 @@
   <link href="<?php echo base_url('assets/css/minified/core.min.css'); ?>" rel="stylesheet" type="text/css">
   <link href="<?php echo base_url('assets/css/minified/components.min.css'); ?>" rel="stylesheet" type="text/css">
   <link href="<?php echo base_url('assets/css/minified/colors.min.css'); ?>" rel="stylesheet" type="text/css">
-  <!-- <link href="<?php echo base_url('assets/datepicker/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet" type="text/css"> -->
-  <!-- <link href="<?php echo base_url('assets/datepicker/css/bootstrap-datepicker3.min.css'); ?>" rel="stylesheet" type="text/css"> -->
   <!-- /global stylesheets -->
 
   <!-- Core JS files -->
@@ -24,8 +22,6 @@
   <!-- /core JS files -->
 
   <!-- Theme JS files -->
-  <!-- <script type="text/javascript" src="<?php echo base_url('assets/datepicker/js/bootstrap-datepicker.min.js'); ?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('assets/datepicker/locales/bootstrap-datepicker.id.min.js'); ?>"></script> -->
   <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/tables/datatables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/js/plugins/forms/selects/select2.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/js/core/app.js'); ?>"></script>
