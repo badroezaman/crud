@@ -34,7 +34,7 @@ class Pegawai extends CI_Controller
         $data = array(
             "title" => "Tambah Pegawai",
             "menu" => getmenu(),
-            "all"=>$this->db->get('pegawai')->result(),
+            // "all"=>$this->db->get('pegawai')->result(),
             "aktif" => "pegawai",
             "content" => "pegawai/tambah.php"
         );
