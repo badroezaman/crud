@@ -5,13 +5,21 @@
     <!-- <?= form_open_multipart('Pegawai/tambah'); ?> -->
     <!-- <input type="hidden" value="<?= $getrow['id_admin']; ?>" name="id"> -->
 
-    <!-- <?= $row->nama ?>
-    <?= $row->j_kelamin ?>
+    <!-- <input type="hidden" name="nama" value="<?= set_value['nama']; ?>" />
+    <input type="hidden" name="j_kelamin" value="<?= set_value['j_kelamin']; ?>" />
+    <input type="hidden" name="hobi[]" value="<?= set_value['hobi']; ?>" />
+    <input type="hidden" name="hobi2" value="<?= set_value['hobi2']; ?>" />
+    <input type="hidden" name="tgl_lahir" value="<?= set_value['tgl_lahir']; ?>" />
+    <input type="hidden" name="agama" value="<?= set_value['agama']; ?>" />
+    <input type="hidden" name="alamat" value="<?= set_value['alamat']; ?>" />
+    <input type="hidden" name="no_telp" value="<?= set_value['no_telp']; ?>" /> -->
+
+    <!-- <?= $row->set_value['nama'] ?> -->
+    <!-- <?= $row->j_kelamin ?>
     <?= $row->hobby ?> -->
 
-    <div class="panel-body">
-        <!-- <form method="post" action="<?= site_url('Pegawai/tambah_exe');  ?>" enctype="multipart/form-data"> -->
-        <form method="get" action="<?= site_url('Pegawai/tambah2');  ?>" enctype="multipart/form-data">
+    <div class=" panel-body">
+        <form method="post" action="<?= site_url('Pegawai/tambah_exe');  ?>" enctype="multipart/form-data">
 
             <!-- Nav tabs -->
             <!-- <ul class="nav nav-tabs" role="tablist">
@@ -23,138 +31,91 @@
 
             <!-- Tab panes -->
             <!-- <div class="tab-content"> -->
-            <div id="datadiri">
-                <div class="col-md-12">
-                    <h3>1. Data Diri</h3>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="NamaLengkap" class="col-sm-3">Nama Lengkap</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="nama" required class="form-control" id="NamaLengkap" placeholder="Masukkan Nama Lengkap">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="JenisKelamin" class="col-sm-3">Jenis Kelamin</label>
-                            <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" name="j_kelamin" id="Lk" value="Laki-laki" required>Laki-laki
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="j_kelamin" id="Pr" value="Perempuan" required>Perempuan
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Hobby" class="col-sm-3">Hobi</label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="jalan-jalan"> Jalan-jalan
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="nonton"> Nonton
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="memancing"> Memancing
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="olahraga"> Olahraga
-                                    </label>
-                                </div>
-                                <input type="text" name="hobi2" class="form-control" id="Hobby" placeholder="Hobi lainnya">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="TanggalLahir" class="col-sm-3">Tanggal Lahir</label>
-                            <div class="col-sm-9">
-                                <input id="Tgl_Lahir" type="date" name="tgl_lahir" autocomplete="off" required placeholder="Tanggal Lahir" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Agama" class="col-sm-3">Agama</label>
-                            <div class="col-sm-9">
-                                <select data-placeholder="Pilih Agama" class="select-clear" name="agama" required>
-                                    <?php $agm = $this->db->get('agama')->result(); ?>
-                                    <option></option>
-                                    <?php
-                                    foreach ($agm as $ag) :;
-                                        echo '<option value="' . $ag->id_agama . '">' . $ag->agama . '</option>';
-                                    endforeach;
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Alamat" class="col-sm-3">Alamat</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="alamat" required class="form-control" id="Alamat" placeholder="Masukkan Alamat">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="NoTelp" class="col-sm-3">Nomor Telepon</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="no_telp" required class="form-control" id="NoTelp" placeholder="Masukkan Nomor Telepon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <button type="submit" href="<?= site_url('Pegawai/tambah2');  ?>" name="btn_datadiri" id="btn_datadiri" class="btn btn-primary">Lanjut</button>
-                        <!-- <a href="<?php echo site_url('Pegawai/tambah2'); ?>" class="btn btn-success btn-sm">Next <i class="fa fa-chevron-right"></i></a> -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div role="tabpanel" class="tab-pane" id="pekerjaan">
+            <!-- <?= "hello" ?> -->
+            <!-- <div role="tabpanel" class="tab-pane active" id="datadiri">
                     <div class="col-md-12">
-                        <h3>2. Pekerjaan</h3>
+                        <h3>1. Data Diri</h3>
                     </div>
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label for="Pekerjaan" class="col-sm-3">Pekerjaan</label>
+                                <label for="NamaLengkap" class="col-sm-3">Nama Lengkap</label>
                                 <div class="col-sm-9">
-                                    <select data-placeholder="Pilih Pekerjaan" class="select-clear" name="pekerjaan" required>
-                                        <?php $pkrjn = $this->db->get('pekerjaan')->result(); ?>
+                                    <input type="text" name="nama" required class="form-control" id="NamaLengkap" placeholder="Masukkan Nama Lengkap">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="JenisKelamin" class="col-sm-3">Jenis Kelamin</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="j_kelamin" id="Lk" value="Laki-laki" required>Laki-laki
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="j_kelamin" id="Pr" value="Perempuan" required>Perempuan
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Hobby" class="col-sm-3">Hobi</label>
+                                <div class="col-sm-9">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="jalan-jalan"> Jalan-jalan
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="nonton"> Nonton
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="memancing"> Memancing
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="olahraga"> Olahraga
+                                        </label>
+                                    </div>
+                                    <input type="text" name="hobi2" class="form-control" id="Hobby" placeholder="Hobi lainnya">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="TanggalLahir" class="col-sm-3">Tanggal Lahir</label>
+                                <div class="col-sm-9">
+                                    <input id="Tgl_Lahir" type="date" name="tgl_lahir" autocomplete="off" required placeholder="Tanggal Lahir" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Agama" class="col-sm-3">Agama</label>
+                                <div class="col-sm-9">
+                                    <select data-placeholder="Pilih Agama" class="select-clear" name="agama" required>
+                                        <?php $agm = $this->db->get('agama')->result(); ?>
                                         <option></option>
                                         <?php
-                                        foreach ($pkrjn as $krj) :;
-                                            echo '<option value="' . $krj->id_pekerjaan . '">' . $krj->nama_pekerjaan . '</option>';
+                                        foreach ($agm as $ag) :;
+                                            echo '<option value="' . $ag->id_agama . '">' . $ag->agama . '</option>';
                                         endforeach;
                                         ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="Jabatan" class="col-sm-3">Jabatan</label>
+                                <label for="Alamat" class="col-sm-3">Alamat</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="jabatan" required class="form-control" id="Jabatan" placeholder="Masukkan Jabatan">
+                                    <input type="text" name="alamat" required class="form-control" id="Alamat" placeholder="Masukkan Alamat">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-horizontal">
                             <div class="form-group">
-                                <label for="LamaKerja" class="col-sm-3">Lama Kerja</label>
+                                <label for="NoTelp" class="col-sm-3">Nomor Telepon</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="lamakerja" required class="form-control" id="LamaKerja" placeholder="Contoh : 10 tahun">
+                                    <input type="text" name="no_telp" required class="form-control" id="NoTelp" placeholder="Masukkan Nomor Telepon">
                                 </div>
                             </div>
                         </div>
@@ -162,13 +123,60 @@
 
                     <div class="col-md-12">
                         <div class="text-center">
-                            <button type="submit" href="#datadiri" name="back_btn_datadiri" id="back_btn_datadiri" class="btn btn-default" aria-controls="datadiri" role="tab" data-toggle="tab">Kembali</button>
-                            <button type="submit" href="#pendidikan" name="btn_pendidikan" id="btn_pendidikan" class="btn btn-primary" aria-controls="pendidikan" role="tab" data-toggle="tab">Lanjut</button>
+                            <button type="submit" href="#pekerjaan" name="btn_datadiri" id="btn_datadiri" class="btn btn-primary" aria-controls="datadiri" role="tab" data-toggle="tab">Lanjut</button>
+                        </div>
+                    </div>
+                </div> -->
+
+            <div id="pekerjaan">
+                <div class="col-md-12">
+                    <h3>2. Pekerjaan</h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="Pekerjaan" class="col-sm-3">Pekerjaan</label>
+                            <div class="col-sm-9">
+                                <select data-placeholder="Pilih Pekerjaan" class="select-clear" name="pekerjaan" required>
+                                    <?php $pkrjn = $this->db->get('pekerjaan')->result(); ?>
+                                    <option></option>
+                                    <?php
+                                    foreach ($pkrjn as $krj) :;
+                                        echo '<option value="' . $krj->id_pekerjaan . '">' . $krj->nama_pekerjaan . '</option>';
+                                    endforeach;
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Jabatan" class="col-sm-3">Jabatan</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="jabatan" required class="form-control" id="Jabatan" placeholder="Masukkan Jabatan">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div role="tabpanel" class="tab-pane" id="pendidikan">
+                <div class="col-md-6">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="LamaKerja" class="col-sm-3">Lama Kerja</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="lamakerja" required class="form-control" id="LamaKerja" placeholder="Contoh : 10 tahun">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <button onclick="goBack()" type="button" name="btn_datadiri" id="btn_datadiri" class="btn btn-default">Kembali</a>
+                            <button type="submit" href="#pendidikan" name="btn_pendidikan" id="btn_pendidikan" class="btn btn-primary" aria-controls="pendidikan" role="tab" data-toggle="tab">Lanjut</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div role="tabpanel" class="tab-pane" id="pendidikan">
                     <div class="col-md-12">
                         <h3>3. Pendidikan</h3>
                     </div>
@@ -308,9 +316,9 @@
                             <button type="submit" href="#unggahberkas" name="btn_datadiri" id="btn_unggahberkas" class="btn btn-primary" aria-controls="unggahberkas" role="tab" data-toggle="tab">Lanjut</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div role="tabpanel" class="tab-pane" id="unggahberkas">
+            <!-- <div role="tabpanel" class="tab-pane" id="unggahberkas">
                     <div class="col-md-12">
                         <h3>4. Unggah Berkas</h3>
                     </div>
@@ -334,3 +342,9 @@
         </form>
     </div>
 </div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
