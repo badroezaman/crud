@@ -31,65 +31,16 @@ class Pegawai extends CI_Controller
 
     public function tambah()
     {
-		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
         $data = array(
             "title" => "Tambah Pegawai",
             "menu" => getmenu(),
             "aktif" => "pegawai",
-			"content" => "pegawai/add.php",
-			"form" => "1"
+            "content" => "pegawai/tambah.php"
         );
         $this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
 		$this->load->view('admin/template',$data);
 	}
 	
-	public function tambah2()
-    {
-		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('pekerjaan', 'Pilih Pekerjaan', 'required');
-        $data = array(
-            "title" => "Tambah Pegawai",
-            "menu" => getmenu(),
-            "aktif" => "pegawai",
-			"content" => "pegawai/add.php",
-			"form" => "2",
-			"nama2"=> $_POST['nama']
-        );
-        $this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
-		$this->load->view('admin/template',$data);
-	}
-
-	public function tambah3()
-    {
-		$this->form_validation->set_rules('sd', 'Sekolah', 'required');
-        $data = array(
-            "title" => "Tambah Pegawai",
-            "menu" => getmenu(),
-            "aktif" => "pegawai",
-			"content" => "pegawai/add.php",
-			"form" => "3",
-			"nama3"=> $_POST['nama2'],
-			"pekerjaan3"=> $_POST['pekerjaan'],
-        );
-        $this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
-		$this->load->view('admin/template',$data);
-	}
-	
-	public function tambah4()
-    {
-        $data = array(
-            "title" => "Tambah Pegawai",
-            "menu" => getmenu(),
-            "aktif" => "pegawai",
-			"content" => "pegawai/add.php",
-			"form" => "4",
-			"nama4"=> $_POST['nama3'],
-			"pekerjaan4"=> $_POST['pekerjaan3'],
-			"sd4"=> $_POST['sd'],
-        );
-        $this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
-		$this->load->view('admin/template',$data);
-	}
 	public function tambah_exe()
 	{
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');

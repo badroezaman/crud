@@ -55,7 +55,7 @@ class Submenu extends CI_Controller {
 	public function edit($id){
             #$kk=getKK($id);
 		$data=array(
-			"title"=>'Edit Sub Menu',
+			"title"=>'Edit Sub Menu1',
 			"menu"=>getmenu(),
 			"aktif"=>"submenu",
 			"getrow"=>$this->db->where('id_submenu',$id)->get('submenu')->row_array(),
