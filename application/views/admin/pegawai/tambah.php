@@ -6,7 +6,7 @@
     <!-- <input type="hidden" value="<?= $getrow['id_admin']; ?>" name="id"> -->
 
     <div class="panel-body">
-        <form method="post" action="<?= site_url('Pegawai/tambah_exe');  ?>"  enctype="multipart/form-data">
+        <form method="post" action="<?= site_url('Pegawai/tambah_exe');  ?>" enctype="multipart/form-data">
 
             <!-- Nav tabs -->
             <!-- <ul class="nav nav-tabs" role="tablist">
@@ -23,90 +23,90 @@
                         <h3>1. Data Diri</h3>
                     </div>
                     <div class="col-md-6">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="NamaLengkap" class="col-sm-3">Nama Lengkap</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="nama" required class="form-control" id="NamaLengkap" placeholder="Masukkan Nama Lengkap">
-                            </div>                            
-                        </div>
-                        <div class="form-group">
-                            <label for="JenisKelamin" class="col-sm-3">Jenis Kelamin</label>
-                            <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" name="j_kelamin" id="Lk" value="Laki-laki" required>Laki-laki
-                                </label>
-                                <label class="radio-inline">
-                                <input type="radio" name="j_kelamin" id="Pr" value="Perempuan" required>Perempuan
-                                </label>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="NamaLengkap" class="col-sm-3">Nama Lengkap</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="nama" required class="form-control" id="NamaLengkap" placeholder="Masukkan Nama Lengkap">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Hobby" class="col-sm-3">Hobi</label>
-                            <div class="col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="jalan-jalan"> Jalan-jalan
+                            <div class="form-group">
+                                <label for="JenisKelamin" class="col-sm-3">Jenis Kelamin</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="j_kelamin" id="Lk" value="Laki-laki" required>Laki-laki
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="j_kelamin" id="Pr" value="Perempuan" required>Perempuan
                                     </label>
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="nonton"> Nonton
-                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="Hobby" class="col-sm-3">Hobi</label>
+                                <div class="col-sm-9">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="jalan-jalan"> Jalan-jalan
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="nonton"> Nonton
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="memancing"> Memancing
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="hobi[]" value="olahraga"> Olahraga
+                                        </label>
+                                    </div>
+                                    <input type="text" name="hobi2" class="form-control" id="Hobby" placeholder="Hobi lainnya">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="memancing"> Memancing
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hobi[]" value="olahraga"> Olahraga
-                                    </label>
-                                </div>
-                                <input type="text" name="hobi2" class="form-control" id="Hobby" placeholder="Hobi lainnya">
                             </div>
                         </div>
                     </div>
-                    </div>
-                    
+
                     <div class="col-md-6">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="TanggalLahir" class="col-sm-3">Tanggal Lahir</label>
-                            <div class="col-sm-9">
-                                <input id="Tgl_Lahir" type="date" name="tgl_lahir" autocomplete="off" required placeholder="Tanggal Lahir" class="form-control">
-                            </div>                            
-                        </div>
-                        <div class="form-group">
-                            <label for="Agama" class="col-sm-3">Agama</label>
-                            <div class="col-sm-9">
-                                <select data-placeholder="Pilih Agama" class="select-clear" name="agama" required>
-                                    <?php $agm = $this->db->get('agama')->result(); ?>
-                                    <option></option>
-                                    <?php
-                                        foreach ($agm as $ag): ;
-                                            echo '<option value="' . $ag->id_agama .'">' . $ag->agama . '</option>';
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="TanggalLahir" class="col-sm-3">Tanggal Lahir</label>
+                                <div class="col-sm-9">
+                                    <input id="Tgl_Lahir" type="date" name="tgl_lahir" autocomplete="off" required placeholder="Tanggal Lahir" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Agama" class="col-sm-3">Agama</label>
+                                <div class="col-sm-9">
+                                    <select data-placeholder="Pilih Agama" class="select-clear" name="agama" required>
+                                        <?php $agm = $this->db->get('agama')->result(); ?>
+                                        <option></option>
+                                        <?php
+                                        foreach ($agm as $ag) :;
+                                            echo '<option value="' . $ag->id_agama . '">' . $ag->agama . '</option>';
                                         endforeach;
-                                    ?>
-                                </select>
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Alamat" class="col-sm-3">Alamat</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="alamat" required class="form-control" id="Alamat" placeholder="Masukkan Alamat">
+                            <div class="form-group">
+                                <label for="Alamat" class="col-sm-3">Alamat</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="alamat" required class="form-control" id="Alamat" placeholder="Masukkan Alamat">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="NoTelp" class="col-sm-3">Nomor Telepon</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="no_telp" required class="form-control" id="NoTelp" placeholder="Masukkan Nomor Telepon">
+                            <div class="form-group">
+                                <label for="NoTelp" class="col-sm-3">Nomor Telepon</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="no_telp" required class="form-control" id="NoTelp" placeholder="Masukkan Nomor Telepon">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
-                    
+
                     <div class="col-md-12">
                         <div class="text-center">
                             <button type="submit" href="#pekerjaan" name="btn_datadiri" id="btn_datadiri" class="btn btn-primary" aria-controls="datadiri" role="tab" data-toggle="tab">Lanjut</button>
@@ -127,9 +127,9 @@
                                         <?php $pkrjn = $this->db->get('pekerjaan')->result(); ?>
                                         <option></option>
                                         <?php
-                                            foreach ($pkrjn as $krj): ;
-                                                echo '<option value="' . $krj->id_pekerjaan .'">' . $krj->nama_pekerjaan . '</option>';
-                                            endforeach;
+                                        foreach ($pkrjn as $krj) :;
+                                            echo '<option value="' . $krj->id_pekerjaan . '">' . $krj->nama_pekerjaan . '</option>';
+                                        endforeach;
                                         ?>
                                     </select>
                                 </div>
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <div class="form-group">
@@ -182,7 +182,7 @@
                                         <input type="radio" name="st_sd" value="Negeri" required>Negeri
                                     </label>
                                     <label class="radio-inline">
-                                    <input type="radio" name="st_sd" value="Swasta" required>Swasta
+                                        <input type="radio" name="st_sd" value="Swasta" required>Swasta
                                     </label>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
                                         <input type="radio" name="st_smp" value="Negeri" required>Negeri
                                     </label>
                                     <label class="radio-inline">
-                                    <input type="radio" name="st_smp" value="Swasta" required>Swasta
+                                        <input type="radio" name="st_smp" value="Swasta" required>Swasta
                                     </label>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                         <input type="radio" name="st_smaka" value="Negeri">Negeri
                                     </label>
                                     <label class="radio-inline">
-                                    <input type="radio" name="st_smaka" value="Swasta">Swasta
+                                        <input type="radio" name="st_smaka" value="Swasta">Swasta
                                     </label>
                                 </div>
                             </div>
@@ -230,10 +230,10 @@
                                 <label for="StatusD3" class="col-sm-3">Status D3</label>
                                 <div class="col-sm-9">
                                     <label class="radio-inline">
-                                        <input type="radio" name="st_d3" value="Negeri" >Negeri
+                                        <input type="radio" name="st_d3" value="Negeri">Negeri
                                     </label>
                                     <label class="radio-inline">
-                                    <input type="radio" name="st_d3" value="Swasta" >Swasta
+                                        <input type="radio" name="st_d3" value="Swasta">Swasta
                                     </label>
                                 </div>
                             </div>
@@ -252,10 +252,10 @@
                                 <label for="StatusS1" class="col-sm-3">Status S1</label>
                                 <div class="col-sm-9">
                                     <label class="radio-inline">
-                                        <input type="radio" name="st_s1" value="Negeri" >Negeri
+                                        <input type="radio" name="st_s1" value="Negeri">Negeri
                                     </label>
                                     <label class="radio-inline">
-                                    <input type="radio" name="st_s1" value="Swasta" >Swasta
+                                        <input type="radio" name="st_s1" value="Swasta">Swasta
                                     </label>
                                 </div>
                             </div>
@@ -269,10 +269,10 @@
                                 <label for="StatusS2" class="col-sm-3">Status S2</label>
                                 <div class="col-sm-9">
                                     <label class="radio-inline">
-                                        <input type="radio" name="st_s2" value="Negeri" >Negeri
+                                        <input type="radio" name="st_s2" value="Negeri">Negeri
                                     </label>
                                     <label class="radio-inline">
-                                    <input type="radio" name="st_s2" value="Swasta" >Swasta
+                                        <input type="radio" name="st_s2" value="Swasta">Swasta
                                     </label>
                                 </div>
                             </div>
@@ -286,16 +286,16 @@
                                 <label for="StatusS3" class="col-sm-3">Status S3</label>
                                 <div class="col-sm-9">
                                     <label class="radio-inline">
-                                        <input type="radio" name="st_s3" value="Negeri" >Negeri
+                                        <input type="radio" name="st_s3" value="Negeri">Negeri
                                     </label>
                                     <label class="radio-inline">
-                                    <input type="radio" name="st_s3" value="Swasta" >Swasta
+                                        <input type="radio" name="st_s3" value="Swasta">Swasta
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-12">
                         <div class="text-center">
                             <button type="submit" href="#pekerjaan" name="back_btn_pekerjaan" id="back_btn_pekerjaan" class="btn btn-default" aria-controls="pekerjaan" role="tab" data-toggle="tab">Kembali</button>
