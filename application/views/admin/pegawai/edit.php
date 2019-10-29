@@ -11,7 +11,6 @@
             if ($form == '1') { ?>
                 <div id="datadiri">
 
-
                     <div class="col-md-12">
                         <h3>1. Data Diri</h3>
                     </div>
@@ -95,9 +94,6 @@
                                 <div class="col-sm-9">
                                     <select data-placeholder="Pilih Agama" class="select-clear" name="agama" required>
                                         <?php
-                                            $agm = "SELECT `pegawai`.`id_agama`, `agama`.`id_agama`
-                                                        FROM `pegawai` JOIN `agama`
-                                                        ON `pegawai`.`id_agama` = `agama`.`id_agama` ";
                                             $agm = $this->db->get('agama')->result();
                                             ?>
                                         <option></option>
@@ -139,17 +135,23 @@
                     <div class="col-md-12">
                         <h3>2. Pekerjaan</h3>
                     </div>
+                    
+                    <?= form_open_multipart('Pegawai/edit_pendidikan'); ?>
+                    <input type="hidden" value="<?= $getrow['id_pegawai']; ?>" name="id">
+
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label for="Pekerjaan" class="col-sm-3">Pekerjaan</label>
                                 <div class="col-sm-9">
                                     <select data-placeholder="Pilih Pekerjaan" class="select-clear" name="pekerjaan" required>
-                                        <?php $pkrjn = $this->db->get('pekerjaan')->result(); ?>
+                                        <?php 
+                                        $pkrjn = $this->db->get('pekerjaan')->result(); 
+                                        ?>
                                         <option></option>
                                         <?php
                                             foreach ($pkrjn as $krj) :;
-                                                echo '<option value="' . $krj->id_pekerjaan . '">' . $krj->nama_pekerjaan . '</option>';
+                                                echo '<option value="' . $krj->id_pekerjaan . '" ' . select($getrow['id_pekerjaan'], $krj->id_pekerjaan) . '>' . $krj->nama_pekerjaan . '</option>';
                                             endforeach;
                                             ?>
                                     </select>
@@ -158,20 +160,18 @@
                             <div class="form-group">
                                 <label for="Jabatan" class="col-sm-3">Jabatan</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="jabatan" required class="form-control" id="Jabatan" placeholder="Masukkan Jabatan">
+                                    <input type="text" name="jabatan" value="<?= $getrow['jabatan']; ?>" required class="form-control" id="Jabatan" placeholder="Masukkan Jabatan">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <?= form_open_multipart('Pegawai/edit_pendidikan'); ?>
 
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <label for="LamaKerja" class="col-sm-3">Lama Kerja</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="lamakerja" required class="form-control" id="LamaKerja" placeholder="Contoh : 10 tahun">
+                                    <input type="text" name="lamakerja" value="<?= $getrow['lama_kerja']; ?>" required class="form-control" id="LamaKerja" placeholder="Contoh : 10 tahun">
                                 </div>
                             </div>
                         </div>
@@ -187,172 +187,190 @@
                 </div>
 
             <?php
+            } elseif ($form == '3') { ?>
+
+                <div id="pendidikan">
+                    <div class="col-md-12">
+                        <h3>3. Pendidikan</h3>
+                    </div>
+
+                    <?= form_open_multipart('Pegawai/edit_berkas'); ?>
+                    <input type="hidden" value="<?= $getrow['id_pegawai']; ?>" name="id">
+
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="SD" class="col-sm-3">SD</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="sd" value="<?= $getrow['sd']; ?>" required class="form-control" id="SD" placeholder="Asal SD">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="StatusSD" class="col-sm-3">Status SD</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                            <input type="radio" name="st_sd" value="Negeri" <?php if ($getrow['sd_status'] == 'Negeri') {
+                                                                                                                    echo "checked=\"checked\"";
+                                                                                                                }; ?>>Negeri
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="st_sd" value="Swasta" <?php if ($getrow['sd_status'] == 'Swasta') {
+                                                                                                                    echo "checked=\"checked\"";
+                                                                                                                }; ?>>Swasta
+                                        </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="SMP" class="col-sm-3">SMP</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="smp" value="<?= $getrow['smp']; ?>" required class="form-control" id="SMP" placeholder="Asal SMP">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="StatusSMP" class="col-sm-3">Status SMP</label>
+                                <div class="col-sm-9">
+                                <label class="radio-inline">
+                                            <input type="radio" name="st_smp" value="Negeri" <?php if ($getrow['smp_status'] == 'Negeri') {
+                                                                                                                    echo "checked=\"checked\"";
+                                                                                                                }; ?>>Negeri
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="st_smp" value="Swasta" <?php if ($getrow['smp_status'] == 'Swasta') {
+                                                                                                                    echo "checked=\"checked\"";
+                                                                                                                }; ?>>Swasta
+                                        </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="SMAKA" class="col-sm-3">SMA / SMK / MA</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="smaka" class="form-control" id="SMAKA" placeholder="Asal SMA / SMK / MA">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="StatusSMAKA" class="col-sm-3">Status SMA / SMK / MA</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_smaka" value="Negeri">Negeri
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_smaka" value="Swasta">Swasta
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="D3" class="col-sm-3">D3</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="d3" class="form-control" id="D3" placeholder="Asal D3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="StatusD3" class="col-sm-3">Status D3</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_d3" value="Negeri">Negeri
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_d3" value="Swasta">Swasta
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="S1" class="col-sm-3">S1</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="s1" class="form-control" id="S1" placeholder="Asal S1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="StatusS1" class="col-sm-3">Status S1</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_s1" value="Negeri">Negeri
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_s1" value="Swasta">Swasta
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="S2" class="col-sm-3">S2</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="s2" class="form-control" id="S2" placeholder="Asal S2">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="StatusS2" class="col-sm-3">Status S2</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_s2" value="Negeri">Negeri
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_s2" value="Swasta">Swasta
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="S3" class="col-sm-3">S3</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="s3" class="form-control" id="S3" placeholder="Asal S3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="StatusS3" class="col-sm-3">Status S3</label>
+                                <div class="col-sm-9">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_s3" value="Negeri">Negeri
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="st_s3" value="Swasta">Swasta
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <button type="submit" href="#pekerjaan" name="back_btn_pekerjaan" id="back_btn_pekerjaan" class="btn btn-default">Kembali</button>
+                            <button type="submit" href="#unggahberkas" name="btn_datadiri" id="btn_unggahberkas" class="btn btn-primary">Lanjut</button>
+                        </div>
+                    </div>
+                    <?php echo form_close(); ?>
+                </div>
+
+            <?php
+            } elseif ($form == '4') { ?>
+
+                <div id="unggahberkas">
+                    <div class="col-md-12">
+                        <h3>4. Unggah Berkas</h3>
+                    </div>
+
+                    <?= form_open_multipart('Pegawai/edit_finish'); ?>
+                    <input type="hidden" value="<?= $getrow['id_pegawai']; ?>" name="id">
+
+                    <div class="form-group">
+                        <label for="Foto">Unggah Ijazah</label>
+                        <input type="file" id="UnggahIjazah" name="file_ijazah">
+                        <p class="help-block">Ukuran file maks 500kb (pdf).</p>
+                        <input type="text" class="form-control" placeholder="<?= 'upload/pegawai/ijazah/' . $getrow['ijazah']; ?>" readonly>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" href="#pendidikan" name="back_btn_pendidikan" id="back_btn_pendidikan" class="btn btn-default">Kembali</button>
+                        <button type="submit" name="btn_selesai" id="btn_selesai" class="btn btn-success">Selesai</button>
+                    </div>
+                    <?php echo form_close(); ?>
+                </div>
+
+            <?php
             } else {
                 redirect('pegawai/edit_datadiri');
-            }
-            ?>
-
-            <!-- <div id="pendidikan">
-            <div class="col-md-12">
-                <h3>3. Pendidikan</h3>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <label for="SD" class="col-sm-3">SD</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="sd" required class="form-control" id="SD" placeholder="Asal SD">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="StatusSD" class="col-sm-3">Status SD</label>
-                        <div class="col-sm-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="st_sd" value="Negeri" required>Negeri
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="st_sd" value="Swasta" required>Swasta
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="SMP" class="col-sm-3">SMP</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="smp" required class="form-control" id="SMP" placeholder="Asal SMP">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="StatusSMP" class="col-sm-3">Status SMP</label>
-                        <div class="col-sm-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="st_smp" value="Negeri" required>Negeri
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="st_smp" value="Swasta" required>Swasta
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="SMAKA" class="col-sm-3">SMA / SMK / MA</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="smaka" class="form-control" id="SMAKA" placeholder="Asal SMA / SMK / MA">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="StatusSMAKA" class="col-sm-3">Status SMA / SMK / MA</label>
-                        <div class="col-sm-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="st_smaka" value="Negeri">Negeri
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="st_smaka" value="Swasta">Swasta
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="D3" class="col-sm-3">D3</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="d3" class="form-control" id="D3" placeholder="Asal D3">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="StatusD3" class="col-sm-3">Status D3</label>
-                        <div class="col-sm-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="st_d3" value="Negeri">Negeri
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="st_d3" value="Swasta">Swasta
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <label for="S1" class="col-sm-3">S1</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="s1" class="form-control" id="S1" placeholder="Asal S1">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="StatusS1" class="col-sm-3">Status S1</label>
-                        <div class="col-sm-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="st_s1" value="Negeri">Negeri
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="st_s1" value="Swasta">Swasta
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="S2" class="col-sm-3">S2</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="s2" class="form-control" id="S2" placeholder="Asal S2">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="StatusS2" class="col-sm-3">Status S2</label>
-                        <div class="col-sm-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="st_s2" value="Negeri">Negeri
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="st_s2" value="Swasta">Swasta
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="S3" class="col-sm-3">S3</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="s3" class="form-control" id="S3" placeholder="Asal S3">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="StatusS3" class="col-sm-3">Status S3</label>
-                        <div class="col-sm-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="st_s3" value="Negeri">Negeri
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="st_s3" value="Swasta">Swasta
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="text-center">
-                    <button type="submit" href="#pekerjaan" name="back_btn_pekerjaan" id="back_btn_pekerjaan" class="btn btn-default">Kembali</button>
-                    <button type="submit" href="#unggahberkas" name="btn_datadiri" id="btn_unggahberkas" class="btn btn-primary">Lanjut</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="unggahberkas">
-            <div class="col-md-12">
-                <h3>4. Unggah Berkas</h3>
-            </div>
-            <div class="form-group">
-                <label for="Foto">Unggah Foto</label>
-                <input type="file" id="UnggahFoto" name="file_foto" required>
-                <p class="help-block">Ukuran foto maks 300kb (jpg/jpeg/png).</p>
-            </div>
-            <div class="form-group">
-                <label for="Foto">Unggah Ijazah</label>
-                <input type="file" id="UnggahIjazah" name="file_ijazah" required>
-                <p class="help-block">Ukuran file maks 500kb (pdf).</p>
-            </div>
-            <div class="text-center">
-                <button type="submit" href="#pendidikan" name="back_btn_pendidikan" id="back_btn_pendidikan" class="btn btn-default">Kembali</button>
-                <button type="submit" name="btn_selesai" id="btn_selesai" class="btn btn-success">Selesai</button>
-            </div>
-        </div> -->
+                } ?>
         </div>
 
     </div>

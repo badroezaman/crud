@@ -46,114 +46,130 @@ class Pegawai extends CI_Controller
 
 	public function add_pekerjaan()
 	{
-		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
-		$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
-		$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
+		if(empty($_POST['nama'])){
+			redirect(base_url('Pegawai/add_datadiri'));
+		} else {		
+			$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+			$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
+			$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
+			$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
 
-		if ($this->form_validation->run() == FALSE) {
-			if ($_POST) {
-				$checkbox = $this->input->post('hobi');
-				$hobi = implode(", ", $checkbox);
-				$hobis = $hobi . ", " . $this->input->post('hobis');
+			if ($this->form_validation->run() == FALSE) {
+				if ($_POST) {
+					$checkbox = $this->input->post('hobi');
+					$hobi = implode(", ", $checkbox);
+					$hobis = $hobi . ", " . $this->input->post('hobis');
+				}
+				$data = array(
+					"title" => "Tambah Pegawai",
+					"menu" => getmenu(),
+					"aktif" => "pegawai",
+					"content" => "pegawai/add.php",
+					"form" => "2",
+					"nama2" => $_POST['nama'],
+					"jk2" => $_POST['j_kelamin'],
+					"hobi2" => $hobis,
+				);
+				// return var_dump($data);
+				$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
+				$this->load->view('admin/template', $data);
 			}
-			$data = array(
-				"title" => "Tambah Pegawai",
-				"menu" => getmenu(),
-				"aktif" => "pegawai",
-				"content" => "pegawai/add.php",
-				"form" => "2",
-				"nama2" => $_POST['nama'],
-				"jk2" => $_POST['j_kelamin'],
-				"hobi2" => $hobis,
-			);
-			// return var_dump($data);
-			$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
-			$this->load->view('admin/template', $data);
 		}
 	}
 
 	public function add_pendidikan()
 	{
-		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
-		$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
-		$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
-
-		$this->form_validation->set_rules('pekerjaan', 'Pilih Pekerjaan', 'required');
-
-		if ($this->form_validation->run() == FALSE) {
-			$data = array(
-				"title" => "Tambah Pegawai",
-				"menu" => getmenu(),
-				"aktif" => "pegawai",
-				"content" => "pegawai/add.php",
-				"form" => "3",
-				"nama3" => $_POST['nama2'],
-				"jk3" => $_POST['jk2'],
-				"hobi3" => $_POST['hobi2'],
-				"pekerjaan3" => $_POST['pekerjaan'],
-			);
-			// return var_dump($data);
-			$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
-			$this->load->view('admin/template', $data);
+		if(empty($_POST['pekerjaan'])){
+			redirect(base_url('Pegawai/add_pendidikan'));
+		} else {
+			$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+			$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
+			$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
+			$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
+	
+			$this->form_validation->set_rules('pekerjaan', 'Pilih Pekerjaan', 'required');
+	
+			if ($this->form_validation->run() == FALSE) {
+				$data = array(
+					"title" => "Tambah Pegawai",
+					"menu" => getmenu(),
+					"aktif" => "pegawai",
+					"content" => "pegawai/add.php",
+					"form" => "3",
+					"nama3" => $_POST['nama2'],
+					"jk3" => $_POST['jk2'],
+					"hobi3" => $_POST['hobi2'],
+					"pekerjaan3" => $_POST['pekerjaan'],
+				);
+				// return var_dump($data);
+				$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
+				$this->load->view('admin/template', $data);
+			}
 		}
 	}
 
 	public function add_berkas()
 	{
-		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
-		$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
-		$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
-
-		$this->form_validation->set_rules('pekerjaan', 'Pilih Pekerjaan', 'required');
-
-		$this->form_validation->set_rules('sd', 'Sekolah', 'required');
-
-		if ($this->form_validation->run() == FALSE) {
-			$data = array(
-				"title" => "Tambah Pegawai",
-				"menu" => getmenu(),
-				"aktif" => "pegawai",
-				"content" => "pegawai/add.php",
-				"form" => "4",
-				"nama4" => $_POST['nama3'],
-				"jk4" => $_POST['jk3'],
-				"hobi4" => $_POST['hobi3'],
-				"pekerjaan4" => $_POST['pekerjaan3'],
-				"sd4" => $_POST['sd'],
-			);
-			// return var_dump($data);
-			$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
-			$this->load->view('admin/template', $data);
+		if(empty($_POST['sd'])){
+			redirect(base_url('Pegawai/add_berkas'));
+		} else {
+			$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+			$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
+			$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
+			$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
+	
+			$this->form_validation->set_rules('pekerjaan', 'Pilih Pekerjaan', 'required');
+	
+			$this->form_validation->set_rules('sd', 'Sekolah', 'required');
+	
+			if ($this->form_validation->run() == FALSE) {
+				$data = array(
+					"title" => "Tambah Pegawai",
+					"menu" => getmenu(),
+					"aktif" => "pegawai",
+					"content" => "pegawai/add.php",
+					"form" => "4",
+					"nama4" => $_POST['nama3'],
+					"jk4" => $_POST['jk3'],
+					"hobi4" => $_POST['hobi3'],
+					"pekerjaan4" => $_POST['pekerjaan3'],
+					"sd4" => $_POST['sd'],
+				);
+				// return var_dump($data);
+				$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
+				$this->load->view('admin/template', $data);
+			}
 		}
 	}
 
 	public function add_finish()
 	{
-		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-		$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
-		$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
-		$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
-
-		$this->form_validation->set_rules('pekerjaan', 'Pilih Pekerjaan', 'required');
-
-		$this->form_validation->set_rules('sd', 'Sekolah', 'required');
-
-		$data = array(
-			"title" => "Tambah Pegawai",
-			"menu" => getmenu(),
-			"aktif" => "pegawai",
-			"content" => "pegawai/add.php",
-			"form" => "5",
-			"nama5" => $_POST['nama4'],
-			"pekerjaan5" => $_POST['pekerjaan4'],
-			"sd5" => $_POST['sd4'],
-			"file_foto5" => $_POST['file_foto'],
-		);
-		$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
-		$this->load->view('admin/template', $data);
+		if(empty($_POST['sd'])){
+			redirect(base_url('Pegawai/add_berkas'));
+		} else {
+			$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+			$this->form_validation->set_rules('j_kelamin', 'Jenis Kelamin', 'required');
+			$this->form_validation->set_rules('hobi[]', 'Hobi', 'required');
+			$this->form_validation->set_rules('hobis', 'Hobi', 'required|trim');
+	
+			$this->form_validation->set_rules('pekerjaan', 'Pilih Pekerjaan', 'required');
+	
+			$this->form_validation->set_rules('sd', 'Sekolah', 'required');
+	
+			$data = array(
+				"title" => "Tambah Pegawai",
+				"menu" => getmenu(),
+				"aktif" => "pegawai",
+				"content" => "pegawai/add.php",
+				"form" => "5",
+				"nama5" => $_POST['nama4'],
+				"pekerjaan5" => $_POST['pekerjaan4'],
+				"sd5" => $_POST['sd4'],
+				"file_foto5" => $_POST['file_foto'],
+			);
+			$this->breadcrumb->append_crumb('Tambah Pegawai', site_url('pegawai'));
+			$this->load->view('admin/template', $data);
+		}
 	}
 
 	public function edit_datadiri($id)
@@ -163,7 +179,7 @@ class Pegawai extends CI_Controller
 			"menu" => getmenu(),
 			"aktif" => "pegawai",
 			"getrow" => $this->db->where('id_pegawai', $id)->get('pegawai')->row_array(),
-			"id" => $id,
+			// "id1" => $id,
 			"content" => "pegawai/edit.php",
 			"form" => "1"
 		);
@@ -175,8 +191,9 @@ class Pegawai extends CI_Controller
 		$this->breadcrumb->append_crumb('Edit Pegawai', site_url('pegawai'));
 		$this->load->view('admin/template', $data);
 	}
-	public function edit_pekerjaan($id)
+	public function edit_pekerjaan()
 	{
+		$id = $_POST['id'];
 		$data = array(
 			"title" => 'Edit Data Pegawai',
 			"menu" => getmenu(),
@@ -185,6 +202,46 @@ class Pegawai extends CI_Controller
 			"id" => $id,
 			"content" => "pegawai/edit.php",
 			"form" => "2"
+		);
+		// $this->db->where('id_pegawai', $_POST['id']);
+		// $this->db->update('pegawai', $data);
+		// $this->session->set_flashdata('sukses', "Data Berhasil Diedit");
+		// redirect('Pegawai');
+
+		$this->breadcrumb->append_crumb('Edit Pegawai', site_url('pegawai'));
+		$this->load->view('admin/template', $data);
+	}
+	public function edit_pendidikan()
+	{
+		$id = $_POST['id'];
+		$data = array(
+			"title" => 'Edit Data Pegawai',
+			"menu" => getmenu(),
+			"aktif" => "pegawai",
+			"getrow" => $this->db->where('id_pegawai', $id)->get('pegawai')->row_array(),
+			"id" => $id,
+			"content" => "pegawai/edit.php",
+			"form" => "3"
+		);
+		// $this->db->where('id_pegawai', $_POST['id']);
+		// $this->db->update('pegawai', $data);
+		// $this->session->set_flashdata('sukses', "Data Berhasil Diedit");
+		// redirect('Pegawai');
+
+		$this->breadcrumb->append_crumb('Edit Pegawai', site_url('pegawai'));
+		$this->load->view('admin/template', $data);
+	}
+	public function edit_berkas()
+	{
+		$id = $_POST['id'];
+		$data = array(
+			"title" => 'Edit Data Pegawai',
+			"menu" => getmenu(),
+			"aktif" => "pegawai",
+			"getrow" => $this->db->where('id_pegawai', $id)->get('pegawai')->row_array(),
+			"id" => $id,
+			"content" => "pegawai/edit.php",
+			"form" => "4"
 		);
 		// $this->db->where('id_pegawai', $_POST['id']);
 		// $this->db->update('pegawai', $data);
