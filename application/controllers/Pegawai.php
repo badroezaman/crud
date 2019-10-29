@@ -164,7 +164,27 @@ class Pegawai extends CI_Controller
 			"aktif" => "pegawai",
 			"getrow" => $this->db->where('id_pegawai', $id)->get('pegawai')->row_array(),
 			"id" => $id,
-			"content" => "pegawai/edit.php"
+			"content" => "pegawai/edit.php",
+			"form" => "1"
+		);
+		// $this->db->where('id_pegawai', $_POST['id']);
+		// $this->db->update('pegawai', $data);
+		// $this->session->set_flashdata('sukses', "Data Berhasil Diedit");
+		// redirect('Pegawai');
+
+		$this->breadcrumb->append_crumb('Edit Pegawai', site_url('pegawai'));
+		$this->load->view('admin/template', $data);
+	}
+	public function edit_pekerjaan($id)
+	{
+		$data = array(
+			"title" => 'Edit Data Pegawai',
+			"menu" => getmenu(),
+			"aktif" => "pegawai",
+			"getrow" => $this->db->where('id_pegawai', $id)->get('pegawai')->row_array(),
+			"id" => $id,
+			"content" => "pegawai/edit.php",
+			"form" => "2"
 		);
 		// $this->db->where('id_pegawai', $_POST['id']);
 		// $this->db->update('pegawai', $data);
